@@ -25,28 +25,52 @@ function getHumanChoiche() {
 
 }
 
-let humanScore = 0
-let computerScore = 0
 
-function playRound(humanChoiche, computerChoiche) {
-    if (humanChoiche === "paper" && computerChoiche === "rock") {
+
+
+
+function playGame() {
+
+    let humanScore = 0
+    let computerScore = 0
+
+    function playRound(humanChoiche, computerChoiche) {
+        if (humanChoiche === "paper" && computerChoiche === "rock") {
         console.log("You win paper beat rock")
-    } else if (humanChoiche === "rock" && computerChoiche === "scissors") {
-        console.log("You win rock bear scissors ")
-    } else if (humanChoiche === "scissors" && computerChoiche === paper) {
+        ++humanScore
+        } else if (humanChoiche === "rock" && computerChoiche === "scissors") {
+        console.log("You win rock beat scissors ")
+        ++humanScore
+        } else if (humanChoiche === "scissors" && computerChoiche === "paper") {
         console.log("You win scissors beat paper")
-    } else if (humanChoiche == computerChoiche) {
+        ++humanScore
+        } else if (humanChoiche == computerChoiche) {
         console.log("draw")
-    } else {
+        } else {
         console.log("You Lose " + computerChoiche + " beat " + humanChoiche)
+        ++computerScore
+        }
+    }   
+
+    function displayScore() {
+        console.log("Computer Score: " + computerScore)
+        console.log("Humans Score: " + humanScore)
     }
+
+    round = 0
+
+    for (let i = 0; i < 5; ++i) {
+        const humanChoiche = getHumanChoiche()
+        const computerChoiche = getComputerChoiche()
+        console.log("Round " + ++round)
+        console.log("Computer Choiche: " + computerChoiche)
+        console.log("Humans Choiche: " + humanChoiche)
+        playRound(humanChoiche, computerChoiche)
+        displayScore()
+        
+    }
+
+    
 }
 
-const humanChoiche = getHumanChoiche()
-const computerChoiche = getComputerChoiche()
-
-console.log("Computer Choiche: " + computerChoiche)
-console.log("Humans Choiche: " + humanChoiche)
-
-playRound(humanChoiche, computerChoiche)
-
+playGame()
